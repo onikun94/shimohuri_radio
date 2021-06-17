@@ -1,0 +1,14 @@
+# next.js
+/.next/
+
+#editor setting
+.vscode/setting.json
+
+#node
+node_modules
+
+#excel
+/.xlsx/
+
+#.misc
+.DS_Store
