@@ -1,9 +1,9 @@
 import { ShimohuriType, ShimohuriTypes } from "../types/shimohuri";
-export async function getHagaki(): Promise<ShimohuriTypes> {
+export async function getHagaki(): Promise<ShimohuriType> {
   const response = await fetch("http://localhost:8080/api/v1/users", {
     method: "GET",
   });
   const shimohuris = await response.json();
-  //console.log(_res);
-  return shimohuris as ShimohuriTypes;
+  console.log(shimohuris);
+  return shimohuris as ShimohuriType;
 }
