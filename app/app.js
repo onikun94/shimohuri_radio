@@ -17,35 +17,36 @@ const ALLOWED_METHODS = [
 app.use(express.static(path.join(__dirname, "public")));
 
 //get all users
-app.get("/api/v1/users", (req, res) => {
+app.get("/api/v1/yato", (req, res) => {
+  console.log("test");
   const db = new sqlite3.Database(dbPath);
-  const origin = req.headers.origin;
-  res.setHeader("Access-Control-Allow-Origin", origin);
-  res.setHeader("Access-Control-Allow-Methods", ALLOWED_METHODS.join(","));
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Content-type,Accept,X-Custom_Header"
-  );
-  db.all("SELECT * FROM users", (err, rows) => {
+  //const origin = req.headers.origin;
+  // res.setHeader("Access-Control-Allow-Origin", origin);
+  // res.setHeader("Access-Control-Allow-Methods", ALLOWED_METHODS.join(","));
+  // res.setHeader(
+  //   "Access-Control-Allow-Headers",
+  //   "Content-type,Accept,X-Custom_Header"
+  // );
+  db.all("SELECT * FROM yato", (err, rows) => {
     res.json(rows);
   });
   db.close();
 });
 
 //get a user
-app.get("/api/v1/users/:id", (req, res) => {
+app.get("/api/v1/yato/:id", (req, res) => {
   const db = new sqlite3.Database(dbPath);
   const id = req.params.id;
-  db.get(`SELECT * FROM users WHERE id =${id}`, (err, row) => {
+  db.get(`SELECT * FROM yato WHERE id =${id}`, (err, row) => {
     res.json(row);
   });
   db.close();
 });
 //search users by matching id
-app.get("/api/v1/search", (req, res) => {
+app.get("/api/v1/yato/search", (req, res) => {
   const db = new sqlite3.Database(dbPath);
   const keyword = req.query.q;
-  db.all(`SELECT * FROM users WHERE name LIKE "%${keyword}%"`, (err, rows) => {
+  db.all(`SELECT * FROM yato WHERE name LIKE "%${keyword}%"`, (err, rows) => {
     res.json(rows);
   });
   db.close();
